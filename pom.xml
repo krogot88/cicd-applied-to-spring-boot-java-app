@@ -56,7 +56,7 @@
 			</plugin>
 
 			<!-- spotify's dockerfile-maven-plugin -->
-			<plugin>
+			<!--<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>1.4.9</version>
@@ -76,8 +76,19 @@
 					<serverId>index.docker.io</serverId>
 					<registryUrl>https://index.docker.io:443/v1/</registryUrl>
 				</configuration>
-			</plugin>
+			</plugin>-->
 
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.3.6</version>
+				<configuration>
+					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
+			</plugin>
 			<!-- maven-dependency-plugin useful for creating docker image -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
