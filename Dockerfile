@@ -5,7 +5,7 @@ FROM openjdk:8-jdk-alpine
 LABEL maintainer="krogot88@yandex.ru"
 
 # Add a volume pointing to /tmp
-#VOLUME /tmp
+VOLUME /tmp
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
@@ -16,6 +16,6 @@ EXPOSE 8080
 # Run the jar file
 #ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+ARG JAR_FILE
+ADD ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
